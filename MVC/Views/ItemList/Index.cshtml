@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MVC.Models.mvcItems>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<p>
+   <a href="@Url.Action("AddOrEditItem","ItemList")" class="btn btn-default" >Create Item</a>
+</p>
+<table class="table">
+    <tr>
+         
+        <th>
+            @Html.DisplayNameFor(model => model.ItemCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tax)
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tax)
+        </td>
+        <td>
+            <a href="@Url.Action("AddOrEditItem","ItemList",new { id = item.ItemID})" class="btn btn-default" >Edit Item</a>
+            <a onclick="Delete(@item.ItemID)" class="btn btn-default" >Delete Item</a>
+        </td>
+    </tr>
+}
+
+</table>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            var successMsg = '@TempData["SuccessMessage"]'
+            if (successMsg != '')
+                alertify.success(successMsg);
+        });
+
+        function Delete(id) {
+            alertify.confirm('Web API with Inventory', 'Are you sure to delete ?', function () {
+                window.location.href = '@Url.Action("Delete", "ItemList")/'+id;
+            },null);
+        }
+    </script>
+    } 
