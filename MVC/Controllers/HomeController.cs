@@ -8,8 +8,16 @@ namespace MVC.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(FormCollection form)
         {
+            //checking whether admin logged IN or not
+            string uname = form["uid"];
+            string password = form["pass"];
+
+            if (uname == "admin" && password == "admin")
+            {
+                return Redirect("ItemList/Index");
+            }
             return View();
         }
 

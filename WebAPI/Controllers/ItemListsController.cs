@@ -23,7 +23,6 @@ namespace WebAPI.Controllers
         }
 
         // GET ItemList of created itens by ID
-        // GET: ItemLists/Details/5
         [ResponseType(typeof(ItemList))]
         public IHttpActionResult GetItem(int? id)
         {
@@ -36,7 +35,6 @@ namespace WebAPI.Controllers
         }
 
         // Update ItemList of created itens
-        // GET: ItemLists/Edit/5
         public IHttpActionResult PutItem(int id,ItemList item)
         {
              
@@ -68,7 +66,6 @@ namespace WebAPI.Controllers
         }
 
         // Delete Item from ItemList 
-        // GET: ItemLists/Delete/5
         [ResponseType(typeof(ItemList))]
         public IHttpActionResult DeleteItem(int id)
         {
